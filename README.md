@@ -23,9 +23,13 @@ run
 程序运行后，会在用户的云盘 [我的应用数据](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps) 目录下添加一个 [应用文件夹](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps%2Fdocs4baidu)，将文件移动到这个文件夹即可。
 
 > h 显示帮助菜单
+
 > l 列出所有的文件（夹）
+
 > s 搜索文件（夹）
+
 > d 获取文件下载地址（需输入显示文件列表或者搜索后的序号）
+
 > e 退出程序
 
 ![demo](https://raw.githubusercontent.com/scusjs/baiduyun/master/demo.gif)
