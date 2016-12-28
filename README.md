@@ -28,7 +28,7 @@ run
 > d 获取文件下载地址（需输入显示文件列表或者搜索后的序号）
 > e 退出程序
 
-[demo](https://raw.githubusercontent.com/scusjs/baiduyun/master/demo.gif)
+![demo](https://raw.githubusercontent.com/scusjs/baiduyun/master/demo.gif)
 
 
 原理
