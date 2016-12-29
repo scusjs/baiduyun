@@ -4,16 +4,20 @@
 # @author scusjs@foxmail.com
 # @version 0.1.00
 # @date 2016-12-28
-
+from __future__ import print_function
+import sys
 from PyQt4.QtWebKit import QWebView
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QUrl
-import sys
+
+if sys.version_info[0] < 3:
+    str = unicode
+    bytes = str
+
 
 class OAuth2Application(QApplication):
     def __init__(self, oa_url, oa_result_base, args):
         super(QApplication, self).__init__(args)
-        QApplication.__init__(self, args)
         self.oa_result_base = oa_result_base
         self.oa_result = oa_result_base
         self.browser = QWebView()
@@ -32,17 +36,21 @@ class OAuth2Application(QApplication):
     def check_success(self):
         return self.oa_result != self.oa_result_base
 
+
 def get_oa_info(oa_url, oa_result_base):
     app = OAuth2Application(oa_url, oa_result_base, sys.argv)
     if not app.check_success():
         return ""
     return str(app.oa_result)
 
+
 if __name__ == "__main__":
     import utils
-    client_id, _ = utils.get_config()
-    print client_id
-    oa_url = "http://openapi.baidu.com/oauth/2.0/authorize?client_id=" + client_id + "&response_type=token&redirect_uri=oob&scope=netdisk"
-    oa_result_base = "http://openapi.baidu.com/oauth/2.0/login_success"
+    client_id = utils.get_config('apikey')
+    oa_result_base = utils.get_config('oa_result')
+    print(client_id)
+    oa_url = "http://openapi.baidu.com/oauth/2.0/authorize?" \
+             "client_id={client_id}&response_type=token" \
+             "&redirect_uri=oob&scope=netdisk".format(client_id=client_id)
     print(get_oa_info(oa_url, oa_result_base))
 

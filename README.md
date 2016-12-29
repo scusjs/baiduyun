@@ -20,7 +20,11 @@ python2/3
 run
 ----
 
-`python baiduyun.py`
+`python baiduyun`
+
+or
+
+`./baiduyun`
 
 程序运行后，会在用户的云盘 [我的应用数据](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps) 目录下添加一个 [应用文件夹](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps%2Fpcs_test_12)，将文件移动到这个文件夹即可。
 
