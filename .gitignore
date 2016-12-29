@@ -1,3 +1,4 @@
 *~
 *.pyc
+*.idea
 user_access_token
