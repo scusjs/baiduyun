@@ -20,7 +20,7 @@ run
 
 `python baiduyun.py`
 
-程序运行后，会在用户的云盘 [我的应用数据](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps) 目录下添加一个 [应用文件夹](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps%2Fdocs4baidu)，将文件移动到这个文件夹即可。
+程序运行后，会在用户的云盘 [我的应用数据](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps) 目录下添加一个 [应用文件夹](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps%2Fpcs_test_12)，将文件移动到这个文件夹即可。
 
 > h 显示帮助菜单
 
@@ -40,5 +40,5 @@ run
 
 通过 Qt 内置浏览器使用 OAuth2 登录百度，获取 access_token，使用 [PCS API](https://d.pcs.baidu.com/rest/2.0/pcs/file?method=download&access_token=23.f2f2a457d65fefaaca199b3d1a0c42d5.2592000.1485530425.3325487139-4404738&path=/apps/docs4baidu/ndmz.mp4)进行操作。
 
-可自行在百度开发者中心注册应用并开通 PCS API，然后替换 baiduyun.py 文件中 client_id 和 base_path 即可。其中 client_id 为应用 apikey，base_path 为填写的 pcs 应用目录。
+可自行在百度开发者中心注册应用并开通 PCS API，然后替换 config.ini 文件中 client_id 和 base_path 即可。其中 client_id 为应用 apikey，base_path 为填写的 pcs 应用目录。
 
