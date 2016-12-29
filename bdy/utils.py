@@ -6,25 +6,28 @@
 # @version 0.1.00
 # @date 2016-12-28
 from __future__ import print_function
+import os
 import sys
 import json
 import requests
 from prettytable import PrettyTable
 
 if sys.version_info[0] < 3:
-    bytes = str
-    str = unicode
     from ConfigParser import ConfigParser
     import urlparse
+    bytes = str
+    str = unicode
 else:
     from configparser import ConfigParser
     from urllib import parse as urlparse
+    raw_input = input
 
 
 def get_config(which):
     config = ConfigParser()
-    # config.readfp(open("config.ini", "r"))
-    config.read("config.ini")
+    path = os.path.join(os.path.dirname(__file__),
+                        'config.ini')
+    config.read(path)
     return config.get("bdy", which)
 
 

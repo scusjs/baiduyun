@@ -7,17 +7,17 @@
 # @date 2016-12-28
 from __future__ import print_function
 import sys
-import oauth_ui
-import utils
-import requests
 import json
+import requests
+from . import oauth_ui
+from . import utils
 
 if sys.version_info[0] < 3:
     str = unicode
     bytes = str
 
 
-class Baiduyun(object):
+class BaiduYun(object):
     def __init__(self, oauth_info):
         self.oauth_info = oauth_info
         self.base_url = utils.get_config("base_url")
@@ -44,7 +44,7 @@ class Baiduyun(object):
         result = json.loads(response.content)
         if 'error_code' in result:
             return False, result
-        result = self._getResultList(result['list'])
+        result = self._get_result_list(result['list'])
         return True, result
 
     def search_file(self, keyword, path="/", re=1, method='search'):
@@ -93,7 +93,7 @@ if __name__ == "__main__":
         utils.save_oauth_info(oauth_info)
 
     print("获取数据成功")
-    bdy = Baiduyun(oauth_info)
+    bdy = BaiduYun(oauth_info)
 
     utils.menu(bdy)
 
