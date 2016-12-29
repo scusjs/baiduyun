@@ -21,11 +21,7 @@ class BaiduYun(object):
     def __init__(self, oauth_info):
         self.oauth_info = oauth_info
         self.base_url = utils.get_config("base_url")
-<<<<<<< HEAD
         self.base_path = utils.get_config("base_path")
-=======
-        self.base_path = utils.get_config("bash_path")
->>>>>>> 3f164f29151cdd45d1ff201aee587044f2a032ba
 
     def space_info(self):
         params = {"method": "info",

@@ -89,11 +89,7 @@ def menu(bdy):
     while True:
         user_input = raw_input("请输入命令:")
         if user_input == "l":
-<<<<<<< HEAD:bdy/utils.py
             request_flag, file_list_tmp = bdy.list_dir()
-=======
-            request_flag, file_list_tmp = bdy.listDir()
->>>>>>> 3f164f29151cdd45d1ff201aee587044f2a032ba:bdy/utils.py
             show_table(request_flag, file_list_tmp)
 
         elif user_input == "q":
@@ -110,11 +106,7 @@ def menu(bdy):
             print(file_list[user_input]['download'])
         elif user_input == "s":
             user_input = raw_input("请输入查询文件关键字：")
-<<<<<<< HEAD:bdy/utils.py
             request_flag, file_list_tmp = bdy.search_file(user_input)
-=======
-            request_flag, file_list_tmp = bdy.searchFile(user_input)
->>>>>>> 3f164f29151cdd45d1ff201aee587044f2a032ba:bdy/utils.py
             show_table(request_flag, file_list_tmp)
         else:
             print("\nh 帮助\nl 列出文件列表\nd 获取下载地址\ns 搜索文件\nq 退出\n")
@@ -128,13 +120,8 @@ def show_table(request_flag, file_list_tmp):
     global file_list
     file_list = file_list_tmp
     table.padding_width = 1
-<<<<<<< HEAD:bdy/utils.py
     for i, val in enumerate(file_list):
         table.add_row([i, val['name'], get_size_in_nice_string(val['size'])])
-=======
-    for i, val in file_list:
-        table.add_row([i, val['name']], get_size_in_nice_string(val['size']))
->>>>>>> 3f164f29151cdd45d1ff201aee587044f2a032ba:bdy/utils.py
     print(table)
 
 
