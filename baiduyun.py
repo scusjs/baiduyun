@@ -53,7 +53,7 @@ class Baiduyun(object):
         return True, result
 
     def _getDownloadinfo(self, path):
-        return "https://d.pcs.baidu.com/rest/2.0/pcs/file?method=download&access_token=" + oauth_info['access_token'] + "&path=" + path
+        return "https://pcs.baidu.com/rest/2.0/pcs/file?method=download&access_token=" + oauth_info['access_token'] + "&path=" + path
 
     def _getResultList(self, fileList):
         for i in range(len(fileList)):
