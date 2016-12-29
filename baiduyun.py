@@ -11,8 +11,7 @@ import utils
 import requests
 import json
 
-client_id = "FS0X9n8iwlSnqy5cIuwhQXYX"
-base_path = "/apps/docs4baidu"
+client_id, base_path = utils.get_config()
 
 
 oa_url = "http://openapi.baidu.com/oauth/2.0/authorize?client_id=" + client_id + "&response_type=token&redirect_uri=oob&scope=netdisk"

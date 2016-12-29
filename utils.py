@@ -9,6 +9,12 @@ import urlparse
 import json
 import requests
 from prettytable import PrettyTable
+import ConfigParser
+
+def get_config():
+    config = ConfigParser.ConfigParser()
+    config.readfp(open("config.ini", "r"))
+    return config.get("bdy", "apikey"), config.get("bdy", "base_path")
 
 def get_oauth_result(url):
     url = url.replace("#","?", 1)

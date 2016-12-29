@@ -39,7 +39,10 @@ def get_oa_info(oa_url, oa_result_base):
     return str(app.oa_result)
 
 if __name__ == "__main__":
-    oa_url = "http://openapi.baidu.com/oauth/2.0/authorize?client_id=FS0X9n8iwlSnqy5cIuwhQXYX&response_type=token&redirect_uri=oob"
+    import utils
+    client_id, _ = utils.get_config()
+    print client_id
+    oa_url = "http://openapi.baidu.com/oauth/2.0/authorize?client_id=" + client_id + "&response_type=token&redirect_uri=oob&scope=netdisk"
     oa_result_base = "http://openapi.baidu.com/oauth/2.0/login_success"
     print(get_oa_info(oa_url, oa_result_base))
 
