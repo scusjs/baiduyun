@@ -14,6 +14,8 @@ python2/3
 
 `pip install requests Qt.py prettytable`
 
+> pyqt4 的安装参考[这里](https://riverbankcomputing.com/software/pyqt/download)
+
 
 run
 ----
