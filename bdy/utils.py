@@ -96,7 +96,7 @@ def menu(bdy):
             exit()
         elif user_input == "d":
             try:
-                user_input = input("请输入待下载序列号:")
+                user_input = int(raw_input("请输入待下载序列号:"))
                 if user_input >= len(file_list) or user_input < 0:
                     raise Exception()
             except:

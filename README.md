@@ -26,6 +26,14 @@ or
 
 `./baiduyun`
 
+如果没有 PyQt4 环境，可以加上 `-b` 参数使用本地浏览器执行：
+
+`./baiduyun -b`
+
+or
+
+`python baiduyun -b`
+
 程序运行后，会在用户的云盘 [我的应用数据](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps) 目录下添加一个 [应用文件夹](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps%2Fpcs_test_12)，将文件移动到这个文件夹即可。
 
 > h 显示帮助菜单
