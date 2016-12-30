@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import getopt
 import sys
 from bdy.baiduyun import BaiduYun
@@ -31,5 +31,7 @@ if __name__ == "__main__":
 
     print("获取数据成功")
     bdy = BaiduYun(oauth_info)
-
-    utils.menu(bdy)
+    try:
+        utils.menu(bdy)
+    except Exception:
+        exit()

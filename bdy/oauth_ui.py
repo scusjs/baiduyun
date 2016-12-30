@@ -5,7 +5,7 @@
 # @author scusjs@foxmail.com
 # @version 0.1.00
 # @date 2016-12-28
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import sys
 from PyQt4.QtWebKit import QWebView
 from PyQt4.QtGui import QApplication

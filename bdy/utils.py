@@ -1,11 +1,11 @@
-# coding: utf8
+# coding: utf-8
 ##
 # @file utils.py
 # @brief 
 # @author scusjs@foxmail.com
 # @version 0.1.00
 # @date 2016-12-28
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import os
 import sys
 import json
@@ -22,6 +22,8 @@ else:
     from urllib import parse as urlparse
     raw_input = input
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def get_config(which):
     config = ConfigParser()
@@ -87,7 +89,7 @@ def menu(bdy):
     global file_list
     file_list = []
     while True:
-        user_input = raw_input("请输入命令:")
+        user_input = raw_input("Please Enter Command:")
         if user_input == "l":
             request_flag, file_list_tmp = bdy.list_dir()
             show_table(request_flag, file_list_tmp)
@@ -96,16 +98,16 @@ def menu(bdy):
             exit()
         elif user_input == "d":
             try:
-                user_input = int(raw_input("请输入待下载序列号:"))
+                user_input = int(raw_input("Please Enter the Index of Waiting for Download: "))
                 if user_input >= len(file_list) or user_input < 0:
                     raise Exception()
             except:
-                print("请输入正确的数字序号\n")
+                print("Please Enter the Correct Index\n")
                 continue
-            print("下载地址为：")
+            print("Download Address：")
             print(file_list[user_input]['download'])
         elif user_input == "s":
-            user_input = raw_input("请输入查询文件关键字：")
+            user_input = raw_input("Please Enter Keyword of Query File: ")
             request_flag, file_list_tmp = bdy.search_file(user_input)
             show_table(request_flag, file_list_tmp)
         else:
