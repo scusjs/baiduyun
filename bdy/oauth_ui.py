@@ -6,12 +6,18 @@
 # @version 0.1.00
 # @date 2016-12-28
 from __future__ import print_function, unicode_literals
-import sys
-from PyQt4.QtWebKit import QWebView
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QUrl
 
-if sys.version_info[0] < 3:
+try:
+    from PyQt4.QtWebKit import QWebView
+    from PyQt4.QtGui import QApplication
+    from PyQt4.QtCore import QUrl
+except ImportError:
+    print("尚未安装PyQt4模块，请安装后使用")
+    exit()
+
+from .utils import PY2
+
+if PY2:
     str = unicode
     bytes = str
 
