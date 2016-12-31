@@ -10,11 +10,6 @@ import json
 import requests
 from . import utils
 
-try:
-    from . import oauth_ui
-except ImportError:
-    from . import oauth_browser as oauth_ui
-
 
 class BaiduYun(object):
     def __init__(self, oauth_info):
