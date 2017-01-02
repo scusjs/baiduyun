@@ -87,13 +87,13 @@ def get_size_in_nice_string(size_in_bytes):
 
 
 def r_input(words):
-    if WIN_PLATFORM:
-        return raw_input(words.encode('gbk'))
-    else:
-        if PY2:
-            return raw_input(words.encode('utf8'))
+    if PY2:
+        if WIN_PLATFORM:
+            return raw_input(words.encode('gbk'))
         else:
-            return raw_input(words)
+            return raw_input(words.encode('utf8'))
+    else:
+        return raw_input(words)
 
 
 file_list = []

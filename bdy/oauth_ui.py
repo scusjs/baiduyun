@@ -13,7 +13,7 @@ try:
     from PyQt4.QtGui import QApplication
     from PyQt4.QtCore import QUrl
 except ImportError:
-    print("尚未安装PyQt4模块，请安装后使用")
+    print("尚未安装PyQt4模块，请安装后使用，或者使用 -b 参数运行")
     exit()
 
 from .utils import PY2
