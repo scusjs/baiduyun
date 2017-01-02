@@ -22,7 +22,7 @@ class BaiduYun(object):
                   "access_token": self.oauth_info['access_token']}
         response = requests.get(utils.get_config('quota_url'),
                                 params=params)
-        result = json.loads(response.content)
+        result = response.json()
         if 'error_code' in result:
             return False, result
         return True, result
@@ -35,7 +35,7 @@ class BaiduYun(object):
                   "path": path}
         response = requests.get(self.base_url,
                                 params=params)
-        result = json.loads(response.content)
+        result = response.json()
         if 'error_code' in result:
             return False, result
         result = self._get_result_list(result['list'])
@@ -50,7 +50,7 @@ class BaiduYun(object):
                   "re": re}
         response = requests.get(self.base_url,
                                 params=params)
-        result = json.loads(response.content)
+        result = response.json()
         if 'error_code' in result:
             return False, result
         result = self._get_result_list(result['list'])

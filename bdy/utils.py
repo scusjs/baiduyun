@@ -64,9 +64,9 @@ def oauth_check(oauth_info):
         return False
     url = "https://openapi.baidu.com/rest/2.0/passport/users/getLoggedInUser" \
           "?access_token={access_token}".format(access_token=oauth_info['access_token'])
-    user_info = requests.get(url).content
+    user_info = requests.get(url).json()
     print(user_info)
-    if 'error_code' in json.loads(user_info):
+    if 'error_code' in user_info:
         return False
     return True
 
