@@ -1,18 +1,24 @@
-# coding: utf8
+# coding: utf-8
 ##
 # @file utils.py
 # @brief 
 # @author scusjs@foxmail.com
 # @version 0.1.00
 # @date 2016-12-28
-from __future__ import print_function
-import os
+from __future__ import print_function, unicode_literals
+
 import sys
+
 import json
+import os
+import platform
 import requests
 from prettytable import PrettyTable
 
-if sys.version_info[0] < 3:
+PY2 = sys.version_info[0] < 3
+WIN_PLATFORM = 'win' in platform.platform().lower()
+
+if PY2:
     from ConfigParser import ConfigParser
     import urlparse
     bytes = str
@@ -80,6 +86,13 @@ def get_size_in_nice_string(size_in_bytes):
         return (bytes[:-2] if bytes.endswith('.0') else bytes) + ' bytes'
 
 
+def r_input(words):
+    if WIN_PLATFORM:
+        return raw_input(words.encode('gbk'))
+    else:
+        return raw_input(words)
+
+
 file_list = []
 
 
@@ -87,7 +100,8 @@ def menu(bdy):
     global file_list
     file_list = []
     while True:
-        user_input = raw_input("请输入命令:")
+        print("\nh 帮助\nl 列出文件列表\nd 获取下载地址\ns 搜索文件\nq 退出\n")
+        user_input = r_input("请输入命令:")
         if user_input == "l":
             request_flag, file_list_tmp = bdy.list_dir()
             show_table(request_flag, file_list_tmp)
@@ -96,7 +110,7 @@ def menu(bdy):
             exit()
         elif user_input == "d":
             try:
-                user_input = int(raw_input("请输入待下载序列号:"))
+                user_input = int(r_input("请输入待下载序列号:"))
                 if user_input >= len(file_list) or user_input < 0:
                     raise Exception()
             except:
@@ -105,7 +119,7 @@ def menu(bdy):
             print("下载地址为：")
             print(file_list[user_input]['download'])
         elif user_input == "s":
-            user_input = raw_input("请输入查询文件关键字：")
+            user_input = r_input("请输入查询文件关键字：")
             request_flag, file_list_tmp = bdy.search_file(user_input)
             show_table(request_flag, file_list_tmp)
         else:
@@ -113,7 +127,12 @@ def menu(bdy):
 
 
 def show_table(request_flag, file_list_tmp):
-    table = PrettyTable(["序列号", "文件/目录名", "文件大小"])
+    rows = ["序列号", "文件/目录名", "文件大小"]
+    if WIN_PLATFORM:
+        encoding = 'gbk'
+    else:
+        encoding = 'utf-8'
+    table = PrettyTable(rows, encoding=encoding)
     if not request_flag:
         print(file_list_tmp)
         return

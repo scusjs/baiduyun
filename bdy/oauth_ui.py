@@ -1,23 +1,30 @@
+# coding: utf-8
 ##
 # @file oauth_ui.py
 # @brief 
 # @author scusjs@foxmail.com
 # @version 0.1.00
 # @date 2016-12-28
-from __future__ import print_function
-import sys
-from PyQt4.QtWebKit import QWebView
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QUrl
+from __future__ import print_function, unicode_literals
 
-if sys.version_info[0] < 3:
+try:
+    from PyQt4.QtWebKit import QWebView
+    from PyQt4.QtGui import QApplication
+    from PyQt4.QtCore import QUrl
+except ImportError:
+    print("尚未安装PyQt4模块，请安装后使用")
+    exit()
+
+from .utils import PY2
+
+if PY2:
     str = unicode
     bytes = str
 
 
 class OAuth2Application(QApplication):
     def __init__(self, oa_url, oa_result_base, args):
-        super(QApplication, self).__init__(args)
+        super(OAuth2Application, self).__init__(args)
         self.oa_result_base = oa_result_base
         self.oa_result = oa_result_base
         self.browser = QWebView()
