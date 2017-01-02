@@ -16,7 +16,7 @@ import requests
 from prettytable import PrettyTable
 
 PY2 = sys.version_info[0] < 3
-WIN_PLATFORM = 'win' in platform.platform().lower()
+WIN_PLATFORM = 'windows' in platform.platform().lower()
 
 if PY2:
     from ConfigParser import ConfigParser
@@ -90,7 +90,10 @@ def r_input(words):
     if WIN_PLATFORM:
         return raw_input(words.encode('gbk'))
     else:
-        return raw_input(words)
+        if PY2:
+            return raw_input(words.encode('utf8'))
+        else:
+            return raw_input(words)
 
 
 file_list = []

@@ -6,7 +6,7 @@ from bdy.baiduyun import BaiduYun
 from bdy import utils
 
 if __name__ == "__main__":
-    try:
+    #try:
         oauth_info = utils.read_oauth_info()
         if not utils.oauth_check(oauth_info):
             client_id = utils.get_config("apikey")
@@ -32,5 +32,6 @@ if __name__ == "__main__":
         print("获取数据成功")
         bdy = BaiduYun(oauth_info)
         utils.menu(bdy)
-    except Exception:
-        exit()
+    #except Exception as exc:
+    #    print(exc)
+    #    exit()

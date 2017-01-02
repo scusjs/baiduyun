@@ -6,6 +6,7 @@
 # @version 0.1.00
 # @date 2016-12-28
 from __future__ import print_function, unicode_literals
+import sys
 
 try:
     from PyQt4.QtWebKit import QWebView
