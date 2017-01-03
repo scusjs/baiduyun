@@ -57,10 +57,15 @@ class BaiduYun(object):
         return True, result
 
     def _get_download_info(self, path):
-        return "https://d.pcs.baidu.com/rest/2.0/pcs/file?" \
-               "method=download&access_token={access_token}" \
-               "&path={path}".format(access_token=self.oauth_info['access_token'],
-                                     path=path)
+        download_url_list = [
+                "https://d.pcs.baidu.com/rest/2.0/pcs/file?" \
+                "method=download&access_token={access_token}" \
+                "&path={path}",
+                "https://pcs.baidu.com/rest/2.0/pcs/file?" \
+                "method=download&access_token={access_token}" \
+                "&path={path}",
+            ]
+        return [i.format(access_token=self.oauth_info['access_token'], path=path) for i in download_url_list]
 
     def _get_result_list(self, file_list):
         for i, val in enumerate(file_list):

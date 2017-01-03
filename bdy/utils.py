@@ -120,7 +120,8 @@ def menu(bdy):
                 print("请输入正确的数字序号\n")
                 continue
             print("下载地址为：")
-            print(file_list[user_input]['download'])
+            #print(file_list[user_input]['download'])
+            print("\n或者\n".join(file_list[user_input]['download']))
         elif user_input == "s":
             user_input = r_input("请输入查询文件关键字：")
             request_flag, file_list_tmp = bdy.search_file(user_input)
