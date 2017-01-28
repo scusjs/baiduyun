@@ -8,7 +8,7 @@ environment
 
 python2/3
 
-需要包：requests, pyqt4, prettytable
+需要包：requests, pyqt4（可选）, prettytable
 
 可通过 pip 安装：
 
@@ -26,13 +26,11 @@ or
 
 `./baiduyun`
 
-如果没有 PyQt4 环境，可以加上 `-b` 参数使用本地浏览器执行：
+参数：
 
-`./baiduyun -b`
+> `-b` 如果没有 PyQt4 环境，可以加上 `-b` 参数使用本地浏览器执行
 
-or
-
-`python baiduyun -b`
+> `--no-check-certificate` 不检查证书
 
 程序运行后，会在用户的云盘 [我的应用数据](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps) 目录下添加一个 [应用文件夹](https://pan.baidu.com/disk/home#list/vmode=list&path=%2Fapps%2Fpcs_test_12)，将文件移动到这个文件夹即可。
 

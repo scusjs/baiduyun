@@ -5,10 +5,14 @@ import sys
 from bdy.baiduyun import BaiduYun
 from bdy import utils
 
+verify = True
+
 if __name__ == "__main__":
     try:
+        if len(sys.argv) > 1 and '--no-check-certificate' in sys.argv:
+            verify = False
         oauth_info = utils.read_oauth_info()
-        if not utils.oauth_check(oauth_info):
+        if not utils.oauth_check(oauth_info, verify):
             client_id = utils.get_config("apikey")
             oa_url = "https://openapi.baidu.com/oauth/2.0/authorize?client_id={client_id}" \
                      "&response_type=token&redirect_uri=oob" \
@@ -29,7 +33,7 @@ if __name__ == "__main__":
             utils.save_oauth_info(oauth_info)
 
         print("获取数据成功")
-        bdy = BaiduYun(oauth_info)
+        bdy = BaiduYun(oauth_info, verify)
         utils.menu(bdy)
     except Exception as exc:
         print(exc)

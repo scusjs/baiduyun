@@ -57,14 +57,14 @@ def read_oauth_info():
     return oauth_info
 
 
-def oauth_check(oauth_info):
+def oauth_check(oauth_info, verify=True):
     if len(oauth_info) != 5 or 'scope' not in oauth_info \
            or "netdisk" not in oauth_info['scope'] \
            or 'access_token' not in oauth_info:
         return False
     url = "https://openapi.baidu.com/rest/2.0/passport/users/getLoggedInUser" \
           "?access_token={access_token}".format(access_token=oauth_info['access_token'])
-    user_info = requests.get(url).json()
+    user_info = requests.get(url,verify).json()
     print(user_info)
     if 'error_code' in user_info:
         return False

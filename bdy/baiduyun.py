@@ -12,16 +12,17 @@ from . import utils
 
 
 class BaiduYun(object):
-    def __init__(self, oauth_info):
+    def __init__(self, oauth_info, verify = True):
         self.oauth_info = oauth_info
         self.base_url = utils.get_config("base_url")
         self.base_path = utils.get_config("base_path")
+        self.verify = verify
 
     def space_info(self):
         params = {"method": "info",
                   "access_token": self.oauth_info['access_token']}
         response = requests.get(utils.get_config('quota_url'),
-                                params=params)
+                                params=params, verify=self.verify)
         result = response.json()
         if 'error_code' in result:
             return False, result
@@ -34,7 +35,7 @@ class BaiduYun(object):
                   "by": by,
                   "path": path}
         response = requests.get(self.base_url,
-                                params=params)
+                                params=params, verify=self.verify)
         result = response.json()
         if 'error_code' in result:
             return False, result
@@ -49,7 +50,7 @@ class BaiduYun(object):
                   "wd": keyword,
                   "re": re}
         response = requests.get(self.base_url,
-                                params=params)
+                                params=params, verify=self.verify)
         result = response.json()
         if 'error_code' in result:
             return False, result
