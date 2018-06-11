@@ -102,11 +102,14 @@ file_list = []
 def menu(bdy):
     global file_list
     file_list = []
+    path = "/"
     while True:
         print("\nh 帮助\nl 列出文件列表\nd 获取下载地址\ns 搜索文件\nq 退出\n")
         user_input = r_input("请输入命令:")
         if user_input == "l":
-            request_flag, file_list_tmp = bdy.list_dir()
+            path = "/" if path == "" else path
+            path = r_input("请输入绝对路径（" + path + "）:").strip()
+            request_flag, file_list_tmp = bdy.list_dir(path=path)
             show_table(request_flag, file_list_tmp)
 
         elif user_input == "q":
