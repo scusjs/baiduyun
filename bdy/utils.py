@@ -95,7 +95,6 @@ def r_input(words):
     else:
         return raw_input(words)
 
-
 file_list = []
 
 
@@ -103,8 +102,9 @@ def menu(bdy):
     global file_list
     file_list = []
     path = "/"
+    help_text = "\nh 帮助\nl 列出文件列表\nd 获取下载地址\ndl 序列获取下载地址\ns 搜索文件\nq 退出\n"
     while True:
-        print("\nh 帮助\nl 列出文件列表\nd 获取下载地址\ns 搜索文件\nq 退出\n")
+        print(help_text)
         user_input = r_input("请输入命令:")
         if user_input == "l":
             path = "/" if path == "" else path
@@ -125,12 +125,44 @@ def menu(bdy):
             print("下载地址为：")
             #print(file_list[user_input]['download'])
             print("\n或者\n".join(file_list[user_input]['download']))
+        elif user_input == "dl":
+            try:
+                start_index = int(r_input("请输入起始下载序列号:"))
+                if start_index >= len(file_list) or start_index < 0:
+                    raise Exception()
+            except:
+                print("请输入正确的数字序号\n")
+                continue
+            try:
+                end_index = int(r_input("请输入终止下载序列号:"))
+                if end_index >= len(file_list) or end_index < start_index:
+                    raise Exception()
+            except:
+                print("请输入正确的数字序号\n")
+                continue
+
+            print("正在获取%d到%d的下载地址\n"%(start_index,end_index))
+            downlist_file = open("downlist.txt", 'w')
+            downlist = []
+            for i in range(start_index,end_index+1):
+                downlist.append(file_list[i]['download'][1]+'\n')
+            if PY2:
+                for i in downlist:
+                    if WIN_PLATFORM:
+                        downlist_file.writelines(i.encode('gbk'))
+                    else:
+                        downlist_file.writelines(i.encode('utf8'))
+
+            else:
+                downlist_file.writelines(downlist)
+            downlist_file.close()
+            print("已将所有下载地址保存到以下目录的“downlist.txt”文件中:\n%s\n" % os.getcwd())
         elif user_input == "s":
             user_input = r_input("请输入查询文件关键字：")
             request_flag, file_list_tmp = bdy.search_file(user_input)
             show_table(request_flag, file_list_tmp)
         else:
-            print("\nh 帮助\nl 列出文件列表\nd 获取下载地址\ns 搜索文件\nq 退出\n")
+            print(help_text)
 
 
 def show_table(request_flag, file_list_tmp):
